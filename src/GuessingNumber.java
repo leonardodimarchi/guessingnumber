@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Dimension;
 
 public class GuessingNumber {
@@ -12,13 +10,14 @@ public class GuessingNumber {
     private JLabel lblTxtArea;
     private JLabel lblStatus;
     private JLabel lblScore;
+    private JLabel lblInterval;
 
     public GuessingNumber() {
         RandomNumber gameNumbers = new RandomNumber(1,10);
+        lblInterval.setText("Number interval: "+gameNumbers.getMinNumber()+" ~ "+gameNumbers.getMaxNumber());
 
-        btnOk.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        btnOk.addActionListener(actionEvent -> {
+
                 gameNumbers.rollNumber();
 
                 try{
@@ -41,10 +40,11 @@ public class GuessingNumber {
 
                 }catch(Exception e){
                     e.printStackTrace();
+                    lblStatus.setText("Error");
                 }
 
 
-            }
+
         });
     }
 
